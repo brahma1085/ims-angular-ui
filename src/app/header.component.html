@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="app-toolbar">
+
+  <!-- LEFT: APP TITLE -->
+  <span class="app-title" style="color:#A900A9; font-size:large; font-variant:petite-caps">
+    Inventory Management System</span>
+	
+	<span class="spacer"></span>
+	
+	<button mat-button routerLink="/home" routerLinkActive="active" style="color:#A900A9">
+    <mat-icon>home</mat-icon> Home</button>
+	
+  <!-- MAIN MENU -->
+  <nav class="menu">
+    	<button mat-button (click)="go('/customers')" style="color:#A900A9">
+        <mat-icon>people</mat-icon> Customers</button>
+  	<button mat-button (click)="go('/inventory')" style="color:#A900A9">
+      <mat-icon>inventory</mat-icon> Inventory</button>
+  	<button mat-button (click)="go('/orders')" style="color:#A900A9">
+      <mat-icon>shopping_cart</mat-icon> Orders</button>
+  </nav>
+
+  <!-- SPACER -->
+  <span class="spacer"></span>
+
+  <!-- RIGHT ACTIONS -->
+  <button mat-button color="accent" *ngIf="isAdmin()" (click)="openUsers()">
+    <mat-icon>group</mat-icon>
+    Users
+  </button>
+
+  <button mat-button color="warn" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+
+</mat-toolbar>

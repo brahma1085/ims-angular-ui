@@ -1,0 +1,120 @@
+.hero {
+  height: calc(100vh - 64px);
+}
+
+/* Full hero slider */
+.hero-swiper {
+  width: 100%;
+  height: clamp(280px, 50vh, 520px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+/* Individual slide */
+.hero-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Optional text overlay */
+.hero-content {
+  color: white;
+  text-align: center;
+  max-width: 700px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.service-card h3 {
+  font-size: 22px;
+  color: #A900A9;
+  margin-bottom: 12px;
+}
+
+.service-card mat-icon {
+  color: #A900A9;
+}
+
+.service-card p {
+  font-size: 16px;
+  color: #A900A9;
+}
+
+.secondary-cta {
+  background-color: rgba(255, 255, 255, 0.947) !important;
+  color: #A900A9 !important;
+  text-decoration-color: #A900A9;
+}
+
+.hero-swiper ::ng-deep .swiper-pagination {
+  bottom: 16px;
+}
+
+.hero-swiper ::ng-deep .swiper-button-next,
+.hero-swiper ::ng-deep .swiper-button-prev {
+  color: white;
+}
+
+:host {
+  display: block;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+.slide {
+  height: 100%;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.slide-1 {
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+}
+
+.slide-2 {
+  background: linear-gradient(135deg, #00695c, #26a69a);
+}
+
+.slide-3 {
+  background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+}
+
+.slide h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin-bottom: 12px;
+}
+
+.slide p {
+  font-size: clamp(16px, 2vw, 18px);
+  margin-bottom: 24px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 32px;
+}
+
+.service-card {
+  text-align: center;
+}

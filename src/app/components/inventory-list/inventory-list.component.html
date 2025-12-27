@@ -1,0 +1,99 @@
+<mat-card> 
+	<!-- TOOLBAR -->
+	<mat-toolbar color="primary" style="color:#A900A9; font-variant:petite-caps">Inventory Details <span class="spacer"></span>
+		<button mat-raised-button color="accent" (click)="addItem()">
+			<mat-icon>inventory_add</mat-icon> Add Item</button>
+	</mat-toolbar> 
+	
+	<!-- SEARCH --> 
+	<mat-form-field appearance="outline" style="width: 100%; color:#A900A9">
+		<mat-label>Search</mat-label>
+			<input matInput placeholder="Search inventory" (keyup)="search$.next($any($event.target).value)">
+	</mat-form-field>
+	
+	<!-- TABLE -->
+	<table mat-table [dataSource]="data" matSort multiTemplateDataRows (matSortChange)="onSortChange($event)" class="mat-elevation-z8">
+	
+		<!-- EXPAND ICON COLUMN -->
+		<ng-container matColumnDef="expand">
+		  <th mat-header-cell *matHeaderCellDef></th>
+		  <td mat-cell *matCellDef="let item">
+		    <button mat-icon-button type="button" (click)="toggle(item); $event.stopPropagation()">
+		      <mat-icon>
+		        {{ expandedItemId === item.id ? 'expand_less' : 'expand_more' }}
+		      </mat-icon>
+		
+		    </button>
+		  </td>
+		</ng-container>
+
+	
+		<!-- ID -->
+		<ng-container matColumnDef="id">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header style="color:#A900A9">ID</th>
+		<td mat-cell *matCellDef="let item" style="color:#690048">{{ item.id }}</td>
+		</ng-container>
+	
+		<!-- NAME -->
+		<ng-container matColumnDef="name">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header style="color:#A900A9">Name</th>
+		<td mat-cell *matCellDef="let item" style="color:#690048">{{ item.name }}</td>
+		</ng-container>
+	
+		<!-- PRICE -->
+		<ng-container matColumnDef="price">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header style="color:#A900A9">Price</th>
+		<td mat-cell *matCellDef="let item" style="color:#690048">{{ item.price }}</td>
+		</ng-container>
+	
+		<!-- STOCK -->
+		<ng-container matColumnDef="stock">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header style="color:#A900A9">Stock</th>
+		<td mat-cell *matCellDef="let item" style="color:#690048">{{ item.stock }}</td>
+		</ng-container>
+	
+		<!-- ACTIONS -->
+		<ng-container matColumnDef="actions">
+		<th mat-header-cell *matHeaderCellDef style="color:#A900A9">Actions</th>
+		<td mat-cell *matCellDef="let item">
+			<button mat-icon-button color="primary" (click)="edit(item)" style="color:#690048">
+				<mat-icon>edit</mat-icon>
+			</button>
+			<button mat-icon-button color="warn" (click)="delete(item)" style="color:#690048">
+				<mat-icon>delete</mat-icon>
+			</button>
+		</td>
+		</ng-container>
+	
+		<!-- EXPANDED CONTENT ROW -->
+		<ng-container matColumnDef="expanded">
+		  <td mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length">
+		    <div class="expand-container">
+		      <app-stock-list [item]="item" (stockAdded)="onStockAdded(item.id, $event)" (stockUpdated)="onStockUpdated(item.id, $event)" (stockDeleted)="onStockDeleted(item.id, $event)"></app-stock-list>
+		    </div>
+		
+		  </td>
+		</ng-container>
+
+
+
+	
+	
+	
+		<!-- HEADER -->
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	
+		<!-- NORMAL DATA ROW -->
+		<tr mat-row *matRowDef="let item; columns: displayedColumns">
+		</tr>
+	
+		<!-- EXPANDED ROW (ONLY WHEN TRUE) -->
+		<tr mat-row *matRowDef="let item; columns: ['expanded']; when: isExpandedRow" class="expanded-row">
+		</tr>
+	
+	</table>
+
+	<!-- PAGINATOR -->
+	<mat-paginator [length]="totalElements" [pageSize]="pageSize" [pageSizeOptions]="[5,10,20]" (page)="onPageChange($event)">
+	</mat-paginator>
+</mat-card>

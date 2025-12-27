@@ -1,0 +1,41 @@
+<div style="margin: 8px;">
+	<span class="app-title" style="font-size:large; color:#A900A9; font-variant:petite-caps">Stock Details</span>
+	<span class="spacer"></span>
+  <span style="float:right"><button mat-raised-button color="primary" (click)="addStock()">
+    <mat-icon>inventory_add</mat-icon>
+    Add Stock
+  </button></span>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+  <ng-container matColumnDef="skuCode">
+    <th mat-header-cell *matHeaderCellDef style="color:#A900A9">SKU</th>
+    <td mat-cell *matCellDef="let s" style="color:#690048">{{ s.skuCode }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef style="color:#A900A9">Quantity</th>
+    <td mat-cell *matCellDef="let s" style="color:#690048">{{ s.quantity }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef style="color:#A900A9">Actions</th>
+    <td mat-cell *matCellDef="let s">
+      <button mat-icon-button color="primary" (click)="editStock(s)"  style="color:#690048">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteStock(s)" style="color:#690048">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>
+
+<div *ngIf="dataSource.data.length === 0" style="padding: 8px;">
+  No stocks available
+</div>

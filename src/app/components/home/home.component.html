@@ -1,0 +1,71 @@
+<mat-card class="hero-card">
+
+  <swiper-container
+    #heroSwiper
+    slides-per-view="1"
+    loop="true"
+    autoplay-delay="3000"
+    autoplay-disable-on-interaction="false"
+    pagination="true"
+    navigation="true"
+    class="hero-swiper" 
+  >
+
+    <swiper-slide>
+      <div class="slide slide-1">
+        <h1>Inventory Management System</h1>
+        <p>Manage inventory, orders and users efficiently</p>
+        <div class="hero-actions">
+          <button mat-raised-button color="primary" (click)="go('/inventory')">
+            Go to Inventory
+          </button>
+          <button mat-stroked-button color="primary" class="secondary-cta" (click)="go('/orders')">
+            View Orders
+          </button>
+        </div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide slide-2">
+        <h1>Secure & Scalable</h1>
+        <p>Keycloak + Spring Boot + Angular</p>
+        <div class="hero-actions">
+          <button mat-raised-button color="primary" *ngIf="isAdmin()" (click)="openUsers()">
+            User Management
+          </button>
+        </div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide slide-3">
+        <h1>Production Ready</h1>
+        <p>Role‑based access and real APIs</p>
+      </div>
+    </swiper-slide>
+
+  </swiper-container>
+
+  <section class="services" @fadeUp>
+  <mat-card class="service-card">
+    <mat-icon>inventory</mat-icon>
+    <h3>Inventory</h3>
+    <p>Track stock, pricing & availability</p>
+  </mat-card>
+
+  <mat-card class="service-card">
+    <mat-icon>shopping_cart</mat-icon>
+    <h3>Orders</h3>
+    <p>Manage customer orders seamlessly</p>
+  </mat-card>
+
+  <mat-card class="service-card">
+    <mat-icon>people</mat-icon>
+    <h3>Customers</h3>
+    <p>Centralized customer management</p>
+  </mat-card>
+</section>
+
+
+</mat-card>

@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Edit User</h2>
+
+<div mat-dialog-content>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Username</mat-label>
+    <input matInput [value]="user.username" disabled />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Roles</mat-label>
+    <mat-select [(ngModel)]="roles" multiple>
+      <mat-option value="ADMIN">ADMIN</mat-option>
+      <mat-option value="USER">USER</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>New Password</mat-label>
+    <input matInput type="password" [(ngModel)]="password" />
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</div>
