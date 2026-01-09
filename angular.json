@@ -60,7 +60,8 @@
 					"builder": "@angular/build:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "angular-ui-cli:build:production"
+							"buildTarget": "angular-ui-cli:build:production",
+							"sourceMap": false
 						},
 						"development": {
 							"buildTarget": "angular-ui-cli:build:development"
