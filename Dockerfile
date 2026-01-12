@@ -11,14 +11,14 @@ RUN npm run build -- --configuration=production
 # ---------- Runtime stage ----------
 FROM nginx:alpine
 
-# Remove default config
-RUN rm /etc/nginx/conf.d/default.conf
+# Remove default nginx config
+RUN rm -rf /etc/nginx/conf.d/*
 
-# Copy built Angular files
+# Copy Angular build output
 COPY --from=build /app/dist/angular-ui-cli/browser /usr/share/nginx/html
 
 # Copy nginx config
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
